@@ -11,7 +11,7 @@ import {
 } from "@/lib/react-query/queries";
 import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
-import Carousel from "@/components/shared/Carousel";
+import CarouselHtml from "@/components/shared/CarouselHtml";
 
 // const slides = ['https://i.ibb.co/ncrXc2V/1.png', 'https://i.ibb.co/B3s7v4h/2.png', 'https://i.ibb.co/XXR8kzF/3.png'];
 
@@ -21,8 +21,9 @@ const PostDetails = () => {
   const { user } = useUserContext();
 
   const { data: post, isLoading } = useGetPostById(id);
-  const slides = [post?.imageUrl, post?.imageUrl2, post?.imageUrl3];
+  // const [slides,  setSlides] = useState<string[]>();
 
+  const slides = [post?.imageUrl, post?.imageUrl2, post?.imageUrl3];
   
   const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts(
     post?.creator.$id
@@ -32,6 +33,13 @@ const PostDetails = () => {
   const relatedPosts = userPosts?.documents.filter(
     (userPost) => userPost.$id !== id
   );
+
+  // useEffect(() => {
+  //   const imgUrls = [post?.imageUrl, post?.imageUrl2, post?.imageUrl3];
+  //   setSlides(imgUrls);
+  // }, []);
+
+
 
   const handleDeletePost = () => {
     deletePost({ postId: id, imageId: post?.imageId });
@@ -66,17 +74,14 @@ const PostDetails = () => {
           /> */}
 
           {
-            slides.filter(e => e != null).length > 1 ?
+            slides && slides.filter(e => e != null).length > 1 ?
              
-            <div className="relative ">
-              {/* <div className="max-h-sm  xl:w-[50%]"> */}
-              <div className="max-h-sm  xl:w-[50%]">
-              {/* h-80 lg:h-[480px] xl:w-[48%] */}
-              {/* max-w-md max-h-md */}
-                <Carousel slides={slides.filter(e => e != null)} />
-              </div>
-            </div>
-
+            // <div className="relative ">
+            //   <div className="max-h-sm  xl:w-[50%]">
+            //     <Carousel slides={slides.filter(e => e != null)} />
+            //   </div>
+            // </div>
+            <CarouselHtml slides={slides.filter(e => e != null)}/>
             : <img src={post?.imageUrl} alt="creator"className="post_details-img" />
           }
 

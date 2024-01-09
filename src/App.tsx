@@ -18,6 +18,7 @@ import SigninForm from "@/_auth/forms/SigninForm";
 import { Toaster } from "@/components/ui/toaster";
 
 import "./globals.css";
+import "./carousel.scss"
 
 const App = () => {
   return (
