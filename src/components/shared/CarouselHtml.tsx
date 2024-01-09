@@ -1,4 +1,4 @@
-import useExternalScripts from "@/useJsFile"
+import useExternalScripts from "@/lib/useJsFile"
 import { useEffect } from "react";
 
 type CarouselHtmlProps = {
