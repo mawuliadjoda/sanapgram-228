@@ -1,26 +1,22 @@
 import useExternalScripts from "@/lib/useJsFile"
-import { useEffect } from "react";
+
+
+const MAX_ITEM_IN_SLIDE = 8;
 
 type CarouselHtmlProps = {
     slides: string[]
 }
+
+// https://www.studio-jag.com/actualites/8-best-carousels-en-css3-htm5-js-for-site-web-modern/
+// https://codepen.io/mgiulio/pen/oWKYNz
 const CarouselHtml = ({ slides }: CarouselHtmlProps) => {
     useExternalScripts();
 
-    useEffect(() => {
-      
-      
-    }, []);
-
-
     const computeImageUrls = (slides: string[]) => {
-        // debugger;
+ 
         // const imgUrls = [post?.imageUrl, post?.imageUrl2, post?.imageUrl3].filter(e => e != null);
-    
-        const maxItems = 8;
-       
         const computeSlides = [];
-        for (let index = 0; index < maxItems; index++) {
+        for (let index = 0; index < MAX_ITEM_IN_SLIDE; index++) {
           if(slides.length > index) {
             const element = slides[index];
             computeSlides.push(element);
@@ -28,8 +24,6 @@ const CarouselHtml = ({ slides }: CarouselHtmlProps) => {
             computeSlides.push(slides[index-slides.length]);
           } 
         }
-    
-        console.log(computeSlides);
         return computeSlides;
       }
       const computeSlides = computeImageUrls(slides);
