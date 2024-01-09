@@ -65,11 +65,19 @@ const PostDetails = () => {
             className="post_details-img"
           /> */}
 
-          <div className="relative">
-            <div className="max-w-lg">
-              <Carousel slides={slides.filter(e => e != null)} />
+          {
+            slides.filter(e => e != null).length > 1 ?
+             
+            <div className="relative">
+              <div className="max-w-lg">
+                <Carousel slides={slides.filter(e => e != null)} />
+              </div>
             </div>
-          </div>
+
+            : <img src={post?.imageUrl} alt="creator"className="post_details-img" />
+          }
+
+          
 
           <div className="post_details-info">
             <div className="flex-between w-full">
