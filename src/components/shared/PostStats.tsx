@@ -67,6 +67,17 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
     setIsSaved(true);
   };
 
+
+  const openWhatsapp= (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    const tel = +33786015566;
+    const text = 'Bonjour';
+    window.open(`https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(text)}`);
+    
+  };
+
   const containerStyles = location.pathname.startsWith("/profile")
     ? "w-full"
     : "";
@@ -88,6 +99,19 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
           className="cursor-pointer"
         />
         <p className="small-medium lg:base-medium">{likes.length}</p>
+      </div>
+
+      <div onClick={(e) => { e.preventDefault();  }}>
+        <img
+            src="/assets/icons/whatsapp-icon.svg"
+            alt="like"
+            width={20}
+            height={20}
+            onClick={(e) => openWhatsapp(e)}
+            style={{fontSize: `18px`, color:'#25D366'}}
+            className="cursor-pointer"
+          />
+          {/* <i className="fa-whatsapp" style={{fontSize: `18px`, color:'#25D366'}} aria-hidden="true" /> */}
       </div>
 
       <div className="flex gap-2">
