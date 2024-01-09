@@ -6,7 +6,7 @@ export default function useExternalScripts(){
     const head = document.querySelector("head")!;
     const script = document.createElement("script");
 
-    script.setAttribute("src", "/src/carousel.js");
+    script.setAttribute("src", "/src/lib/carousel.js");
     head.appendChild(script);
 
     return () => {
