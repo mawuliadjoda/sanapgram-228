@@ -159,6 +159,22 @@
   .post_details-img {
     @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px] xl:rounded-l-[24px] xl:rounded-tr-none object-cover p-5 bg-dark-1;
   }
+ 
+  @media (min-width: 1280px) {
+    .post_details-img-carousel {
+      width: 48%;
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
+      border-top-right-radius: 0px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .post_details-img-carousel {
+      height: 480px;
+    }
+  }
+  
+
 
   .post_details-info {
     @apply bg-dark-2 flex flex-col gap-5 lg:gap-7 flex-1 items-start p-8 rounded-[30px];

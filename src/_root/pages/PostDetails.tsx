@@ -68,8 +68,11 @@ const PostDetails = () => {
           {
             slides.filter(e => e != null).length > 1 ?
              
-            <div className="relative">
-              <div className="max-w-lg">
+            <div className="relative ">
+              {/* <div className="max-h-sm  xl:w-[50%]"> */}
+              <div className="max-h-sm  xl:w-[50%]">
+              {/* h-80 lg:h-[480px] xl:w-[48%] */}
+              {/* max-w-md max-h-md */}
                 <Carousel slides={slides.filter(e => e != null)} />
               </div>
             </div>

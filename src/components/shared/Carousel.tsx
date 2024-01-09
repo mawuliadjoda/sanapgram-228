@@ -27,11 +27,12 @@ export default function Carousel({
   return (
     <div className="overflow-hidden relative">
       <div
-        className="flex transition-transform ease-out duration-500"
+        className="flex transition-transform ease-out duration-500 max-w-fit max-h-full"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides.map((img, i) => (
-          <img key={i} src={img}   />
+          <img key={i} src={img}  />
+        //   max-w-md max-h-480px
         ))}
       </div>
       <div className="absolute inset-0 flex items-center justify-between p-4">
