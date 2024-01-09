@@ -11,6 +11,9 @@ import {
 } from "@/lib/react-query/queries";
 import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
+import Carousel from "@/components/shared/Carousel";
+
+// const slides = ['https://i.ibb.co/ncrXc2V/1.png', 'https://i.ibb.co/B3s7v4h/2.png', 'https://i.ibb.co/XXR8kzF/3.png'];
 
 const PostDetails = () => {
   const navigate = useNavigate();
@@ -18,6 +21,9 @@ const PostDetails = () => {
   const { user } = useUserContext();
 
   const { data: post, isLoading } = useGetPostById(id);
+  const slides = [post?.imageUrl, post?.imageUrl2, post?.imageUrl3];
+
+  
   const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts(
     post?.creator.$id
   );
@@ -53,11 +59,17 @@ const PostDetails = () => {
         <Loader />
       ) : (
         <div className="post_details-card">
-          <img
+          {/* <img
             src={post?.imageUrl}
             alt="creator"
             className="post_details-img"
-          />
+          /> */}
+
+          <div className="relative">
+            <div className="max-w-lg">
+              <Carousel slides={slides.filter(e => e != null)} />
+            </div>
+          </div>
 
           <div className="post_details-info">
             <div className="flex-between w-full">

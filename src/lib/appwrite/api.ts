@@ -123,6 +123,39 @@ export async function createPost(post: INewPost) {
     // Upload file to appwrite storage
     const uploadedFile = await uploadFile(post.file[0]);
 
+    // add multiple file
+    let uploadedFile2 = undefined;
+    let fileUrl2 = undefined;
+    let imageId2 = undefined;
+    if(post.file.length > 1 ) {
+      uploadedFile2 = await uploadFile(post.file[1]);
+
+      if (!uploadedFile2) throw Error;
+      imageId2 = uploadedFile2!.$id,
+      fileUrl2 = getFilePreview(uploadedFile2!.$id);
+      if (!fileUrl2) {
+        await deleteFile(uploadedFile2!.$id);
+        throw Error;
+      }
+    }
+        
+    let uploadedFile3 = undefined;
+    let fileUrl3 = undefined;
+    let imageId3 = undefined;
+    if(post.file.length > 2 ) {
+      uploadedFile3 = await uploadFile(post.file[2]);
+
+      if (!uploadedFile3) throw Error;
+      imageId3 = uploadedFile3!.$id,
+      fileUrl3 = getFilePreview(uploadedFile3!.$id);
+      if (!fileUrl3) {
+        await deleteFile(uploadedFile3!.$id);
+        throw Error;
+      }
+    }
+    // end
+      
+
     if (!uploadedFile) throw Error;
 
     // Get file url
@@ -145,6 +178,16 @@ export async function createPost(post: INewPost) {
         caption: post.caption,
         imageUrl: fileUrl,
         imageId: uploadedFile.$id,
+        
+        // add multiple file
+        imageUrl2: fileUrl2,
+        imageId2: imageId2,
+
+        imageUrl3: fileUrl3,
+        imageId3: imageId3,
+        // end
+
+
         location: post.location,
         tags: tags,
       }
